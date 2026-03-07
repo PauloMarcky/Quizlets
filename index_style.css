@@ -1,20 +1,82 @@
 body {
-  height: 100vh;
-  width: 100vw;
-  padding: 0%;
-  margin: 0%;
+  min-height: 100vh;
+  /* Better than height: 100vh for scrolling */
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  /* Light background to see the card */
+}
+
+.main-container {
+  /* Use min-height instead of fixed height */
+  min-height: 400px;
+  /* Mobile first: Default to 90% width */
+  width: 90%;
+  /* Max-width prevents it from getting too big on huge screens */
+  max-width: 500px;
+
+  display: flex;
+  background-color: beige;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  /* Essential for mobile breathing room */
+  box-sizing: border-box;
+  /* Ensures padding doesn't add to width */
+}
+
+.sub-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.topics {
+  background-color: rgba(150, 251, 143, 0.38);
+  text-align: center;
+  border-radius: 10px;
+  padding: 15px 20px;
+  /* Added padding for better click targets */
+  width: 100%;
+  /* Default to full width items on mobile */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.main-container {
-  height: 200px;
-  width: 40%;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: beige;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* DESKTOP ADJUSTMENTS */
+@media (min-width: 768px) {
+  .main-container {
+    width: 40%;
+    /* Shrink back to your original design for desktop */
+  }
+
+  .topics {
+    height: 100px;
+    width: calc(50% - 20px);
+    /* Allow two items per row on larger screens */
+  }
+}
+
+.topics:hover {
+  background-color: rgba(69, 206, 59, 0.38);
+  transform: translateY(-3px);
+  /* Subtle lift effect */
+}
+
+.title {
+  padding-bottom: 20px;
 }
