@@ -6,7 +6,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0;
+  background-color: #fffffF;
   /* Light background to see the card */
 }
 
@@ -19,12 +19,12 @@ body {
   max-width: 500px;
 
   display: flex;
-  background-color: beige;
+  background-color: #FFFFFE;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 15px 2px #2B2C34;
   padding: 20px;
   /* Essential for mobile breathing room */
   box-sizing: border-box;
@@ -41,7 +41,8 @@ body {
 }
 
 .topics {
-  background-color: rgba(150, 251, 143, 0.38);
+  background-color: #994ff3d3;
+  color: #fffffe;
   text-align: center;
   border-radius: 10px;
   padding: 15px 20px;
@@ -55,6 +56,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 500;
 }
 
 /* DESKTOP ADJUSTMENTS */
@@ -65,18 +67,21 @@ body {
   }
 
   .topics {
-    height: 100px;
+    height: 120px;
     width: calc(50% - 20px);
     /* Allow two items per row on larger screens */
   }
 }
 
 .topics:hover {
-  background-color: rgba(69, 206, 59, 0.38);
+  background-color: #e45858d5;
   transform: translateY(-3px);
   /* Subtle lift effect */
 }
 
 .title {
   padding-bottom: 20px;
+  font-family: 'Segoe UI';
+  color: #2b2c34;
+  font-weight: bold;
 }
