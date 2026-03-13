@@ -62,6 +62,7 @@ body {
 /* DESKTOP ADJUSTMENTS */
 @media (min-width: 768px) {
   .main-container {
+    height: 150px;
     width: 40%;
     /* Shrink back to your original design for desktop */
   }
@@ -84,4 +85,23 @@ body {
   font-family: 'Segoe UI';
   color: #2b2c34;
   font-weight: bold;
+}
+
+/*topic 1 Container*/
+
+.topic1-container {
+  background-color: #fffffe;
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  padding: 50px 20px;
+  box-shadow: 0px 0px 15px 2px #2B2C34;
+}
+
+@media (min-width: 768px) {
+  .topic1-container {
+    height: 400px;
+    width: 50%;
+    /* Shrink back to your original design for desktop */
+  }
 }
