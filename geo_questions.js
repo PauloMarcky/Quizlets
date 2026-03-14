@@ -1,46 +1,78 @@
-
-//question element getter
+// Get Elements
 const js_question = document.getElementById('quest');
-const js_btn = document.getElementById("test");
+const choice_buttons = document.querySelectorAll('.choice'); // Selects all 4 buttons
 
-//list of questions
+// Questions
 const questions = [
-  question_1 = {
+  {
     question: "What is the capital of Canada?",
-    choice_a: 'Beijing',
-    choice_b: 'Ottawa',
-    choice_c: 'Seoul',
-    choice_d: 'Manila'
+    choices: ['Beijing', 'Ottawa', 'Seoul', 'Manila'],
+    answer: "Ottawa"
   },
-  question_2 = {
+  {
     question: "What is the capital of Denmark?",
-    choice_a: 'Beijing',
-    choice_b: 'Ottawa',
-    choice_c: 'Seoul',
-    choice_d: 'Manila'
+    choices: ['Copenhagen', 'Oslo', 'Stockholm', 'Helsinki'],
+    answer: "Copenhagen"
   },
-  question_3 = {
+  {
     question: "Which city is the largest not situated on a river, lake, or coastline?",
-    choice_a: 'Beijing',
-    choice_b: 'Ottawa',
-    choice_c: 'Seoul',
-    choice_d: 'Manila'
+    choices: ['Johannesburg', 'Riyadh', 'Mexico City', 'Madrid'],
+    answer: "Johannesburg"
   },
-  question_4 = {
+  {
     question: "What is the largest island in the world?",
-    choice_a: 'Beijing',
-    choice_b: 'Ottawa',
-    choice_c: 'Seoul',
-    choice_d: 'Manila'
+    choices: ['Greenland', 'New Guinea', 'Borneo', 'Madagascar'],
+    answer: "Greenland"
   },
-  question_5 = {
+  {
     question: `Which continent is known as the "Frozen Continent"?`,
-    choice_a: 'Beijing',
-    choice_b: 'Ottawa',
-    choice_c: 'Seoul',
-    choice_d: 'Manila'
+    choices: ['Antarctica', 'Arctic', 'North America', 'Europe'],
+    answer: "Antarctica"
   }
-]
+];
 
+let currentNum = 0;
 
+// Shuffle Questions to randomize
+function shuffleQuestions(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
+// Render Question
+function renderQuestion() {
+  const currentData = questions[currentNum];
+  js_question.textContent = currentData.question;
+
+  choice_buttons.forEach((btn, index) => {
+    btn.textContent = currentData.choices[index];
+
+    btn.onclick = () => {
+      currentNum++;
+
+      if (currentNum < questions.length) {
+        renderQuestion(); // Load the next question
+      } else {
+        showFinished(); // Handle the end of the game
+      }
+    };
+  });
+}
+
+function showFinished() {
+  js_question.textContent = "Quiz Complete!";
+  // Hide the buttons so the user can't click anymore
+  document.querySelector('.choices').style.display = 'none';
+}
+
+// Initialize the Game
+function startGame() {
+  shuffleQuestions(questions); // Randomize the questions
+  currentNum = 0;              // Reset to start
+  renderQuestion();            // Show the first question
+}
+
+// Automatically start when the page loads
+window.onload = startGame;
