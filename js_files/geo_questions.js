@@ -48,13 +48,18 @@ function renderQuestion() {
   const currentData = questions[currentNum];
   js_question.textContent = currentData.question;
 
-  const correct_answer = questions.answer
-  console.log(correct_answer);
-
   choice_buttons.forEach((btn, index) => {
     btn.textContent = currentData.choices[index];
 
     btn.onclick = () => {
+
+      if (btn.textContent === currentData.answer) {
+        score++; // Increase score if correct
+        console.log("Correct! Score: " + score);
+      } else {
+        console.log("Wrong! The answer was: " + currentData.answer);
+      }
+
       currentNum++;
 
       if (currentNum < questions.length) {
@@ -68,6 +73,7 @@ function renderQuestion() {
 
 function showFinished() {
   js_question.textContent = `Quiz Complete! SCORE: ${score}`;
+  js_question.style.textAlign = "center";
   // Hide the buttons so the user can't click anymore
   document.querySelector('.choices').style.display = 'none';
 }
