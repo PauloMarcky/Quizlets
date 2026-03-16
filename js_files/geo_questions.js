@@ -1,6 +1,7 @@
 // Get Elements
 const js_question = document.getElementById('quest');
 const choice_buttons = document.querySelectorAll('.choice'); // Selects all 4 buttons
+let score = 0;
 
 // Questions
 const questions = [
@@ -41,10 +42,14 @@ function shuffleQuestions(array) {
   }
 }
 
+
 // Render Question
 function renderQuestion() {
   const currentData = questions[currentNum];
   js_question.textContent = currentData.question;
+
+  const correct_answer = questions.answer
+  console.log(correct_answer);
 
   choice_buttons.forEach((btn, index) => {
     btn.textContent = currentData.choices[index];
@@ -62,7 +67,7 @@ function renderQuestion() {
 }
 
 function showFinished() {
-  js_question.textContent = "Quiz Complete!";
+  js_question.textContent = `Quiz Complete! SCORE: ${score}`;
   // Hide the buttons so the user can't click anymore
   document.querySelector('.choices').style.display = 'none';
 }
