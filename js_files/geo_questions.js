@@ -64,15 +64,33 @@ function renderQuestion() {
 
       if (currentNum < questions.length) {
         renderQuestion(); // Load the next question
-      } else {
-        showFinished(); // Handle the end of the game
+      }
+      else {
+        if (score == 5) {
+          perfectShowFinished();
+        }
+        else {
+          withWrongShowFinished();
+        }
       }
     };
   });
 }
 
-function showFinished() {
-  js_question.textContent = `Quiz Complete! SCORE: ${score}`;
+function perfectShowFinished() {
+
+  button_generate = `<p>Good Job! Score: ${score}</p> <button onclick="location.reload();" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Try Again!</button> <button onclick="window.location.href='index.html';" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Exit!</button>`;
+
+  js_question.innerHTML = `${button_generate}`;
+  js_question.style.textAlign = "center";
+  // Hide the buttons so the user can't click anymore
+  document.querySelector('.choices').style.display = 'none';
+}
+function withWrongShowFinished() {
+
+  button_generate = `<p>Nice Try! Score: ${score}</p> <button onclick="location.reload();" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Try Again!</button> <button onclick="window.location.href='index.html';" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Exit!</button>`;
+
+  js_question.innerHTML = `${button_generate}`;
   js_question.style.textAlign = "center";
   // Hide the buttons so the user can't click anymore
   document.querySelector('.choices').style.display = 'none';

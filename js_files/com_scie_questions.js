@@ -58,14 +58,34 @@ function rendering_questions(questions) {
         rendering_questions(questions);
       }
       else {
-        js_quest.textContent = `Quiz Complete! SCORE: ${score}`;
-        js_quest.style.textAlign = "center";
-        document.querySelector('.choices').style.display = 'none';
+        if (score == 5) {
+          perfect_ending_result();
+        }
+        else {
+          with_wrong_ending_result();
+        }
       }
-
-
     }
   })
+}
+
+
+function with_wrong_ending_result() {
+  button_generate = `<p>Nice Try! Score: ${score}</p> <button onclick="location.reload();" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Try Again!</button> <button onclick="window.location.href='index.html';" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Exit!</button>`;
+
+  js_quest.innerHTML = `${button_generate}`;
+  js_quest.style.textAlign = "center";
+  document.querySelector('.choices').style.display = 'none';
+
+}
+
+function perfect_ending_result() {
+  button_generate = `<p>Good Job! Score: ${score}</p> <button onclick="location.reload();" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Try Again!</button> <button onclick="window.location.href='index.html';" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Exit!</button>`;
+
+  js_quest.innerHTML = `${button_generate}`;
+  js_quest.style.textAlign = "center";
+  document.querySelector('.choices').style.display = 'none';
+
 }
 
 function StartGame() {
