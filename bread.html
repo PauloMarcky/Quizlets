@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breadaholic | Artisanal Bakery</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #f59e0b;
+      --text-main: #f8fafc;
+      --text-dim: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      background: rgba(15, 23, 42, 0.9);
+      position: sticky;
+      top: 0;
+      border-bottom: 1px solid #334155;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      margin-left: 2rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .search-bar {
+      background: var(--card-bg);
+      border: 1px solid #334155;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      color: white;
+    }
+
+    /* Hero Section */
+    header {
+      text-align: center;
+      padding: 6rem 1rem;
+      background: linear-gradient(to bottom, #1e293b, #0f172a);
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      color: var(--text-dim);
+      font-size: 1.2rem;
+    }
+
+    /* Products Grid */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 4rem 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s;
+      border: 1px solid #334155;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #334155;
+      /* Placeholder */
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: #1e293b;
+      padding: 4rem 2rem;
+      border-radius: 12px;
+      margin-top: 4rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: var(--bg-color);
+      border: 1px solid #334155;
+      color: white;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">BREADAHOLIC</div>
+    <div class="nav-links">
+      <input type="text" class="search-bar" placeholder="Search sourdough...">
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header id="home">
+    <h1>Baked with Obsession.</h1>
+    <p>Experience the crunch of artisanal perfection delivered to your door.</p>
+    <button class="btn">View Collection</button>
+  </header>
+
+  <div class="container" id="products">
+    <h2 style="margin-bottom: 2rem;">Our Fresh Batch</h2>
+    <div class="grid">
+      <div class="product-card">
+        <div
+          style="height:200px; background:#475569; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+          🥖</div>
+        <h3>Classic Sourdough</h3>
+        <p style="color:var(--text-dim)">72-hour fermentation, wild yeast.</p>
+        <p><strong>$9.50</strong></p>
+        <button class="btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <div
+          style="height:200px; background:#475569; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+          🥐</div>
+        <h3>Honey Oat Loaf</h3>
+        <p style="color:var(--text-dim)">Sweet, soft, and perfect for toast.</p>
+        <p><strong>$8.00</strong></p>
+        <button class="btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <div
+          style="height:200px; background:#475569; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+          🍞</div>
+        <h3>Rye & Walnut</h3>
+        <p style="color:var(--text-dim)">Earthy tones with a satisfying crunch.</p>
+        <p><strong>$12.00</strong></p>
+        <button class="btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <section class="contact-section" id="contact">
+      <div class="contact-grid">
+        <div>
+          <h2>Get in Touch</h2>
+          <p style="color:var(--text-dim)">Questions about our baking process or wholesale orders? Drop us a line.</p>
+          <p>📍 123 Baker St, Flour City</p>
+          <p>📞 (555) 010-BREAD</p>
+        </div>
+        <form>
+          <input type="text" placeholder="Your Name">
+          <input type="email" placeholder="Email Address">
+          <textarea rows="4" placeholder="How can we help?"></textarea>
+          <button class="btn" type="submit" style="width:100%">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <footer style="text-align:center; padding: 2rem; color:var(--text-dim); border-top: 1px solid #334155;">
+    &copy; 2026 Breadaholic Artisanal Shop. All rights reserved.
+  </footer>
+
+</body>
+
+</html>

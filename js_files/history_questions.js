@@ -1,7 +1,5 @@
-// Get Elements
-const js_question = document.getElementById('quest');
-const choice_buttons = document.querySelectorAll('.choice'); // Selects all 4 buttons
-let score = 0;
+const js_quest = document.getElementById("quest");
+const js_choices = document.getElementsByClassName("choice");
 
 // History Questions
 const questions = [
@@ -32,76 +30,90 @@ const questions = [
   }
 ];
 
-let currentNum = 0;
 
-// Shuffle Questions to randomize
-function shuffleQuestions(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+let question_index = 0;
+let score = 0;
+
+function shuffle_questions_array(questions) {
+  for (let i = questions.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [questions[i], questions[j]] = [questions[j], questions[i]];
   }
 }
 
+function rendering_questions(questions) {
+  let currentData = questions[question_index]
+  js_quest.textContent = currentData.question;
 
-// Render Question
-function renderQuestion() {
-  const currentData = questions[currentNum];
-  js_question.textContent = currentData.question;
+  Array.from(js_choices).forEach((choice_btn, index) => {
+    choice_btn.textContent = currentData.choices[index];
 
-  choice_buttons.forEach((btn, index) => {
-    btn.textContent = currentData.choices[index];
-
-    btn.onclick = () => {
-
-      if (btn.textContent === currentData.answer) {
-        score++; // Increase score if correct
-        console.log("Correct! Score: " + score);
-      } else {
-        console.log("Wrong! The answer was: " + currentData.answer);
+    choice_btn.onclick = () => {
+      if (choice_btn.textContent == currentData.answer) {
+        score++;
+        console.log(score);
       }
 
-      currentNum++;
+      question_index++;
 
-      if (currentNum < questions.length) {
-        renderQuestion(); // Load the next question
+      if (question_index < questions.length) {
+        rendering_questions(questions);
       }
       else {
         if (score == 5) {
-          perfectShowFinished();
+          perfect_ending_result();
         }
         else {
-          withWrongShowFinished();
+          with_wrong_ending_result();
         }
       }
-    };
-  });
+    }
+  })
 }
 
-function perfectShowFinished() {
 
-  button_generate = `<p>Good Job! Score: ${score}</p> <button onclick="location.reload();" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Try Again!</button> <button onclick="window.location.href='index.html';" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Exit!</button>`;
+function with_wrong_ending_result() {
+  button_generate = `
+  <div class="ending_container">
+    <p>Nice Try! Score: ${score}</p> 
+    <div class="end_btn_container">
+      <button onclick="location.reload();" class="try_btn">
+        Try Again!
+      </button>
+      <button onclick="window.location.href='index.html';" class="exit_btn">
+        Exit!
+      </button>
+    </div>
+  </div>`;
 
-  js_question.innerHTML = `${button_generate}`;
-  js_question.style.textAlign = "center";
-  // Hide the buttons so the user can't click anymore
+  js_quest.innerHTML = `${button_generate}`;
+  js_quest.style.textAlign = "center";
   document.querySelector('.choices').style.display = 'none';
+
 }
-function withWrongShowFinished() {
 
-  button_generate = `<p>Nice Try! Score: ${score}</p> <button onclick="location.reload();" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Try Again!</button> <button onclick="window.location.href='index.html';" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Exit!</button>`;
+function perfect_ending_result() {
+  button_generate = `<div class="ending_container">
+    <p>Good Job! Score: ${score}</p> 
+    <div class="end_btn_container">
+      <button onclick="location.reload();" class="try_btn">
+        Try Again!
+      </button>
+      <button onclick="window.location.href='index.html';" class="exit_btn">
+        Exit!
+      </button>
+    </div>
+  </div>`;
 
-  js_question.innerHTML = `${button_generate}`;
-  js_question.style.textAlign = "center";
-  // Hide the buttons so the user can't click anymore
+  js_quest.innerHTML = `${button_generate}`;
+  js_quest.style.textAlign = "center";
   document.querySelector('.choices').style.display = 'none';
+
 }
 
-// Initialize the Game
-function startGame() {
-  shuffleQuestions(questions); // Randomize the questions
-  currentNum = 0;              // Reset to start
-  renderQuestion();            // Show the first question
+function StartGame() {
+  shuffle_questions_array(questions);
+  rendering_questions(questions);
 }
 
-// Automatically start when the page loads
-window.onload = startGame;
+window.onload = StartGame;

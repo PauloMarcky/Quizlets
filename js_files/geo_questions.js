@@ -79,7 +79,18 @@ function renderQuestion() {
 
 function perfectShowFinished() {
 
-  button_generate = `<p>Good Job! Score: ${score}</p> <button onclick="location.reload();" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Try Again!</button> <button onclick="window.location.href='index.html';" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Exit!</button>`;
+  button_generate = `
+  <div class="ending_container">
+    <p>Good Job! Score: ${score}</p> 
+    <div class="end_btn_container">
+      <button onclick="location.reload();" class="try_btn">
+        Try Again!
+      </button>
+      <button onclick="window.location.href='index.html';" class="exit_btn">
+        Exit!
+      </button>
+    </div>
+  </div>`;
 
   js_question.innerHTML = `${button_generate}`;
   js_question.style.textAlign = "center";
@@ -88,7 +99,17 @@ function perfectShowFinished() {
 }
 function withWrongShowFinished() {
 
-  button_generate = `<p>Nice Try! Score: ${score}</p> <button onclick="location.reload();" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Try Again!</button> <button onclick="window.location.href='index.html';" style="width:100px; height:50px; border-radius: 10px; margin: 15px;">Exit!</button>`;
+  button_generate = `<div class="ending_container">
+    <p>Nice Try! Score: ${score}</p> 
+    <div class="end_btn_container">
+      <button onclick="location.reload();" class="try_btn">
+        Try Again!
+      </button>
+      <button onclick="window.location.href='index.html';" class="exit_btn">
+        Exit!
+      </button>
+    </div>
+  </div>`;
 
   js_question.innerHTML = `${button_generate}`;
   js_question.style.textAlign = "center";
